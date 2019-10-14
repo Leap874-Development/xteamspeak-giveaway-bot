@@ -1,0 +1,15 @@
+{
+	"prefix": ">",
+	"bot_name": "python-bot",
+
+	"embed_colors": {
+		"success": [52, 235, 73],
+		"info": [50, 67, 125],
+		"error": [171, 17, 17]
+	},
+
+	"commands": {
+		"stop_bot": "stop",
+        "calculate_sum": "sum"
+	}
+}
