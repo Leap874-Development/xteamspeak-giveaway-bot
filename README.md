@@ -1,9 +1,5 @@
-# Template Bot v1.0
-By [William Gardner](https://github.com/wg4568/), written for _@user_ on Fiverr
-
-## Order Details
-
-**$X** with **X day delivery** ordered on X/X/X
+# Giveaway Bot v1.0
+By [William Gardner](https://github.com/wg4568/), written for _@xteamspeak_ on Fiverr
 
 ## Installation
 
