@@ -63,22 +63,26 @@ Database schema (using tinydb)...
 
 ## Todo
 
+### Overall todo
+
 - [x] Set up base project
 - [x] Outline command overview
 - [x] Determine database schema
 - [x] Write database class
-- [ ] Implement commands
- - [ ] Stop bot
- - [ ] Create giveaway
- - [ ] Inspect giveaway
- - [ ] List active giveaways
- - [ ] List all giveaways
- - [ ] Close giveaway
- - [ ] Delete giveaway
- - [ ] Join giveaway
- - [ ] Draw user
+- [ ] Implement all commands
 - [ ] Error handling
 - [ ] Testing and bug fixes
+
+### Command implementation
+- [x] Stop bot
+- [ ] Create giveaway
+- [ ] Inspect giveaway
+- [ ] List active giveaways
+- [ ] List all giveaways
+- [ ] Close giveaway
+- [ ] Delete giveaway
+- [ ] Join giveaway
+- [ ] Draw user
 
 ## Installation
 
