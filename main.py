@@ -41,36 +41,37 @@ async def create_giveaway(ctx, name : str):
 @bot.command(name=config['commands']['inspect_giveaway'], help='shows giveaway info')
 @commands.has_permissions(administrator=True)
 async def inspect_giveaway(ctx, name : str):
-    await ctx.send(name)
+    raise NotImplemented()
 
 @bot.command(name=config['commands']['list_giveaways'], help='lists all open giveaways')
 @commands.has_permissions(administrator=True)
 async def list_giveaways(ctx):
-    await ctx.send('all open giveaways')
+    raise NotImplemented()
 
 @bot.command(name=config['commands']['list_all_giveaways'], help='lists all giveaways (including closed)')
 @commands.has_permissions(administrator=True)
 async def list_all_giveaways(ctx):
-    await ctx.send('all giveaways')
+    raise NotImplemented()
 
 @bot.command(name=config['commands']['close_giveaway'], help='closes a giveaway')
 @commands.has_permissions(administrator=True)
 async def close_giveaway(ctx, name : str):
-    await ctx.send(name)
+    db.close_giveaway(name)
+    await ctx.send(embed=embes.SuccessEmbed('Giveaway closed'))
 
 @bot.command(name=config['commands']['delete_giveaway'], help='permanently deletes a giveaway')
 @commands.has_permissions(administrator=True)
 async def delete_giveaway(ctx, name : str):
-    await ctx.send(name)
+    raise NotImplemented()
 
 @bot.command(name=config['commands']['draw_user'], help='draws winner(s) from giveaway')
 @commands.has_permissions(administrator=True)
 async def draw_user(ctx, name : str, quantity : int=1):
-    await ctx.send('%s %s' % (name, quantity))
+    raise NotImplemented()
 
 @bot.command(name=config['commands']['join_giveaway'], help='adds you to a giveaway')
 async def join_giveaway(ctx, name : str):
-    await ctx.send(name)
+    raise NotImplemented()
 
 bot.add_listener(on_ready)
 bot.add_listener(on_command_error)

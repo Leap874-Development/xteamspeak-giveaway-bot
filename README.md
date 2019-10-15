@@ -79,7 +79,7 @@ Database schema (using tinydb)...
 - [ ] Inspect giveaway
 - [ ] List active giveaways
 - [ ] List all giveaways
-- [ ] Close giveaway
+- [x] Close giveaway
 - [ ] Delete giveaway
 - [ ] Join giveaway
 - [ ] Draw user
