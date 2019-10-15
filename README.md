@@ -75,7 +75,7 @@ Database schema (using tinydb)...
 
 ### Command implementation
 - [x] Stop bot
-- [ ] Create giveaway
+- [x] Create giveaway
 - [ ] Inspect giveaway
 - [ ] List active giveaways
 - [ ] List all giveaways
