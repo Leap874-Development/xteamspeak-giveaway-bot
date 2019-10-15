@@ -25,6 +25,9 @@ all giveaways:
 ga!end cool_giveaway
 cool_giveaway ended
 
+ga!delete cool_giveaway
+cool_giveaway deleted
+
 ga!draw <n>
 Winners:
     @user
@@ -34,6 +37,28 @@ Winners:
 ga!join cool_giveaway
 you joined, share this invite link:
 https://discord.gg/abcdefg
+```
+
+Database schema (using tinydb)...
+
+```
+{
+    "giveaways": [
+        {
+            "name": "cool_giveaway",
+            "created": 1571165670,
+            "active": true,
+            "invites": [
+                {
+                    "code": "abcdefg",
+                    "user": 176415653069062146
+                },
+                ...
+            ]
+        },
+        ...
+    ]
+}
 ```
 
 ## Installation
