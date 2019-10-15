@@ -1,6 +1,6 @@
 {
-	"prefix": ">",
-	"bot_name": "python-bot",
+	"prefix": "ga!",
+	"bot_name": "Giveaway Bot",
 
 	"embed_colors": {
 		"success": [52, 235, 73],
@@ -10,6 +10,12 @@
 
 	"commands": {
 		"stop_bot": "stop",
-        "calculate_sum": "sum"
+        "create_giveaway": "create",
+        "inspect_giveaway": "inspect",
+        "list_giveaways": "list",
+        "list_all_giveaways": "listall",
+        "close_giveaway": "end",
+        "draw_user": "draw",
+        "join_giveaway": "join"
 	}
 }

@@ -1,6 +1,41 @@
 # Giveaway Bot v1.0
 By [William Gardner](https://github.com/wg4568/), written for _@xteamspeak_ on Fiverr
 
+Rough command spec overview...
+
+```
+ga!create cool_giveaway
+cool_giveaway created
+
+ga!inspect cool_giveaway
+cool_giveaway (created 10/10/10 5:00pm)
+    @some_user - 5 entries
+    @someoneelse - 1 entry
+
+ga!list
+active giveaways:
+    cool_giveaway (created 10/10/10 5:00pm)
+    someth_else (created 5/13/19 4pm)
+
+ga!listall
+all giveaways:
+    cool_giveaway (created 10/10/10 5:00pm, active)
+    someth_else (created 5/13/19 4pm, ended 5/16/19 9pm)
+
+ga!end cool_giveaway
+cool_giveaway ended
+
+ga!draw <n>
+Winners:
+    @user
+    @someone_else
+    @winner!!
+
+ga!join cool_giveaway
+you joined, share this invite link:
+https://discord.gg/abcdefg
+```
+
 ## Installation
 
 To set up your system, you will need to do the following
