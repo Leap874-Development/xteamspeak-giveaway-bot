@@ -60,6 +60,11 @@ async def list_all_giveaways(ctx):
 async def close_giveaway(ctx, name :str):
     await ctx.send(name)
 
+@bot.command(name=config['commands']['delete_giveaway'], help='permanently deletes a giveaway')
+@commands.has_permissions(administrator=True)
+async def delete_giveaway(ctx, name :str):
+    await ctx.send(name)
+
 @bot.command(name=config['commands']['draw_user'], help='draws winner(s) from giveaway')
 @commands.has_permissions(administrator=True)
 async def draw_user(ctx, name :str, quantity :int=1):

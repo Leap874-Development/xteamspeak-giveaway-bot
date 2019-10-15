@@ -26,7 +26,7 @@ ga!end cool_giveaway
 cool_giveaway ended
 
 ga!delete cool_giveaway
-cool_giveaway deleted
+cool_giveaway deleted permentantly
 
 ga!draw <n>
 Winners:

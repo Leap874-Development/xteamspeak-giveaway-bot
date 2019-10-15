@@ -15,6 +15,7 @@
         "list_giveaways": "list",
         "list_all_giveaways": "listall",
         "close_giveaway": "end",
+        "delete_giveaway": "delete",
         "draw_user": "draw",
         "join_giveaway": "join"
 	}
