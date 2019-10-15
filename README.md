@@ -61,6 +61,25 @@ Database schema (using tinydb)...
 }
 ```
 
+## Todo
+
+- [x] Set up base project
+- [x] Outline command overview
+- [x] Determine database schema
+- [x] Write database class
+- [ ] Implement commands
+ - [ ] Stop bot
+ - [ ] Create giveaway
+ - [ ] Inspect giveaway
+ - [ ] List active giveaways
+ - [ ] List all giveaways
+ - [ ] Close giveaway
+ - [ ] Delete giveaway
+ - [ ] Join giveaway
+ - [ ] Draw user
+- [ ] Error handling
+- [ ] Testing and bug fixes
+
 ## Installation
 
 To set up your system, you will need to do the following
