@@ -1,6 +1,7 @@
 from discord.ext import commands
 
 import discord
+import unicodedata
 import json
 import embeds
 import database
@@ -36,7 +37,9 @@ async def stop_bot(ctx):
 @commands.has_permissions(administrator=True)
 async def create_giveaway(ctx, name : str):
     ga = db.create_giveaway(name)
-    await ctx.send(embed=embeds.GiveawayEmbed(ga))
+    emoji = unicodedata.lookup(config['react'])
+    msg = await ctx.send(embed=embeds.GiveawayEmbed(ga))
+    await msg.add_reaction(emoji)
 
 @bot.command(name=config['commands']['inspect_giveaway'], help='shows giveaway info')
 @commands.has_permissions(administrator=True)

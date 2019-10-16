@@ -1,6 +1,7 @@
 {
 	"prefix": "ga!",
 	"bot_name": "Giveaway Bot",
+	"react": "WHITE HEAVY CHECK MARK",
 
 	"embed_colors": {
 		"success": [52, 235, 73],
