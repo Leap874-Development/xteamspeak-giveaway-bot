@@ -28,10 +28,10 @@ class Database:
                 'invites': [] }
             self.giveaways.insert(ga)
             return ga
-    
+
     def active_giveaways(self):
         return filter(lambda x: x['active'], self.all_giveaways())
-    
+
     def all_giveaways(self):
         return self.giveaways.all()
 

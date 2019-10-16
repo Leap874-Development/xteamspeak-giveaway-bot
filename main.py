@@ -6,31 +6,31 @@ import embeds
 import database
 
 with open('config.json', 'r') as f:
-	config = json.load(f)
+    config = json.load(f)
 
 with open('secrets.json', 'r') as f:
-	secrets = json.load(f)
+    secrets = json.load(f)
 
 bot = commands.Bot(command_prefix=config['prefix'])
 db = database.Database('database.json')
 
 async def on_ready():
-	guild_names = ', '.join([ a.name for a in bot.guilds ])
-	print('%s online and logged in as %s' % (config['bot_name'], bot.user))
-	print('Connected to %s guild(s): %s' % (len(bot.guilds), guild_names))
-	print('Now awaiting commands...')
+    guild_names = ', '.join([ a.name for a in bot.guilds ])
+    print('%s online and logged in as %s' % (config['bot_name'], bot.user))
+    print('Connected to %s guild(s): %s' % (len(bot.guilds), guild_names))
+    print('Now awaiting commands...')
 
 async def on_command_error(ctx, err):
     if 'GiveawayExists' in str(err):
         await ctx.send(embed=embeds.ErrorEmbed('A giveaway already exists under that name'))
     else:
-    	await ctx.send(embed=embeds.CommandErrorEmbed(err, ctx))
+        await ctx.send(embed=embeds.CommandErrorEmbed(err, ctx))
 
 @bot.command(name=config['commands']['stop_bot'], help='stops the bot')
 @commands.has_permissions(administrator=True)
 async def stop_bot(ctx):
-	print('Stop command called, bot shutting down')
-	await bot.logout()
+    print('Stop command called, bot shutting down')
+    await bot.logout()
 
 @bot.command(name=config['commands']['create_giveaway'], help='creates a new giveaway')
 @commands.has_permissions(administrator=True)
