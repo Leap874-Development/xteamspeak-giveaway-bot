@@ -53,6 +53,13 @@ Database schema (using tinydb)...
             ]
         },
         ...
+    ],
+    "messages": [
+        {
+            "id": 12345,
+            "giveaway": "cool_giveaway"
+        },
+        ...
     ]
 }
 ```

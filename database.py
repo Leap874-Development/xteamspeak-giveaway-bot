@@ -11,6 +11,7 @@ class Database:
         self.path = path
         self.db = TinyDB(self.path)
         self.giveaways = self.db.table('giveaways')
+        self.messages = self.db.table('messages')
 
     def get_giveaway(self, name):
         found = self.giveaways.search(where('name') == name)
@@ -28,6 +29,16 @@ class Database:
                 'invites': [] }
             self.giveaways.insert(ga)
             return ga
+
+    def add_message(self, id, name):
+        self.messages.insert({
+            'id': id, 'name': name
+        })
+    
+    def get_message(self, id):
+        found = self.messages.search(where('id') == id)
+        if len(found): return found[0]
+        else: return False
 
     def active_giveaways(self):
         return filter(lambda x: x['active'], self.all_giveaways())
