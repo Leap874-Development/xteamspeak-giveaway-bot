@@ -35,8 +35,8 @@ async def stop_bot(ctx):
 @bot.command(name=config['commands']['create_giveaway'], help='creates a new giveaway')
 @commands.has_permissions(administrator=True)
 async def create_giveaway(ctx, name : str):
-    db.create_giveaway(name)
-    await ctx.send(embed=embeds.SuccessEmbed('Giveaway created'))
+    ga = db.create_giveaway(name)
+    await ctx.send(embed=embeds.GiveawayEmbed(ga))
 
 @bot.command(name=config['commands']['inspect_giveaway'], help='shows giveaway info')
 @commands.has_permissions(administrator=True)
@@ -57,7 +57,7 @@ async def list_all_giveaways(ctx):
 @commands.has_permissions(administrator=True)
 async def close_giveaway(ctx, name : str):
     db.close_giveaway(name)
-    await ctx.send(embed=embes.SuccessEmbed('Giveaway closed'))
+    await ctx.send(embed=embeds.SuccessEmbed('Giveaway closed'))
 
 @bot.command(name=config['commands']['delete_giveaway'], help='permanently deletes a giveaway')
 @commands.has_permissions(administrator=True)
@@ -67,10 +67,6 @@ async def delete_giveaway(ctx, name : str):
 @bot.command(name=config['commands']['draw_user'], help='draws winner(s) from giveaway')
 @commands.has_permissions(administrator=True)
 async def draw_user(ctx, name : str, quantity : int=1):
-    raise NotImplemented()
-
-@bot.command(name=config['commands']['join_giveaway'], help='adds you to a giveaway')
-async def join_giveaway(ctx, name : str):
     raise NotImplemented()
 
 bot.add_listener(on_ready)

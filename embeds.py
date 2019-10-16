@@ -32,3 +32,12 @@ class SuccessEmbed(discord.Embed):
 		discord.Embed.__init__(self,
 			color=self.color, title='Success',
 			description=self.message)
+
+class GiveawayEmbed(discord.Embed):
+    def __init__(self, ga):
+		self.color = discord.Color.from_rgb(*config['embed_colors']['info'])
+
+        discord.Embed.__init__(self,
+            color=self.color, title='Giveaway (%s)' % ga['name'],
+            description='New giveaway created!')
+        embed.set_footer(text='React to this message to join the giveaway')

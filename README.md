@@ -33,10 +33,6 @@ Winners:
     @user
     @someone_else
     @winner!!
-
-ga!join cool_giveaway
-you joined, share this invite link:
-https://discord.gg/abcdefg
 ```
 
 Database schema (using tinydb)...

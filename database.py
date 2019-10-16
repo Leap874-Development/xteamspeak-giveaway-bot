@@ -22,12 +22,12 @@ class Database:
             self.get_giveaway(name)
             raise GiveawayExists()
         except GiveawayNotFound:
-            self.giveaways.insert({
-                'name': name,
+            ga = { 'name': name,
                 'created': time.time(),
                 'active': True,
-                'invites': []
-            })
+                'invites': [] }
+            self.giveaways.insert(ga)
+            return ga
     
     def active_giveaways(self):
         return filter(lambda x: x['active'], self.all_giveaways())
@@ -35,7 +35,7 @@ class Database:
     def all_giveaways(self):
         return self.giveaways.all()
 
-    def end_giveaway(self, name):
+    def close_giveaway(self, name):
         ga = self.get_giveaway(name)
         ga['active'] = False
         self.giveaways.update(ga, where('name') == name)
