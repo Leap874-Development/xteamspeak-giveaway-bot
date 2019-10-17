@@ -2,6 +2,11 @@
 	"prefix": "ga!",
 	"bot_name": "Giveaway Bot",
 	"react": "WHITE HEAVY CHECK MARK",
+	"invite_channel": 445308420980080653,
+
+	"messages": {
+		"joined": "You joined the '%GIVEAWAY%' giveaway! Share this invite link and gain entries every time somebody uses it.\n%INVITE%"
+	},
 
 	"embed_colors": {
 		"success": [52, 235, 73],

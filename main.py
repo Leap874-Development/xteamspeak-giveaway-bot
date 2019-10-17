@@ -31,7 +31,15 @@ async def on_command_error(ctx, err):
 async def on_raw_reaction_add(payload):
     msg = db.get_message(payload.message_id)
     if msg and payload.user_id != bot.user.id:
-        print(msg)
+        try:
+            chan = bot.get_channel(config['invite_channel'])
+            usr = bot.get_user(payload.user_id)
+            inv = await chan.create_invite(reason='unique giveaway invite link, do not delete!')
+            data = config['messages']['joined'].replace('%INVITE%', str(inv)).replace('%GIVEAWAY%', msg['name'])
+            db.create_invite(msg['name'], inv.code, payload.user_id)
+            await usr.send(data)
+        except database.AlreadyJoined:
+            pass
 
 @bot.command(name=config['commands']['stop_bot'], help='stops the bot')
 @commands.has_permissions(administrator=True)

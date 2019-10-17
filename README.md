@@ -84,7 +84,7 @@ Database schema (using tinydb)...
 - [ ] List all giveaways
 - [x] Close giveaway
 - [ ] Delete giveaway
-- [ ] Join giveaway
+- [x] Join giveaway
 - [ ] Draw user
 
 ## Installation
