@@ -51,12 +51,13 @@ async def stop_bot(ctx):
 
 @bot.command(name=config['commands']['create_giveaway'], help='creates a new giveaway')
 @commands.has_permissions(administrator=True)
-async def create_giveaway(ctx, name : str):
+async def create_giveaway(ctx, name : str, message : int = None):
     ga = db.create_giveaway(name)
     emoji = unicodedata.lookup(config['react'])
     msg = await ctx.send(embed=embeds.GiveawayEmbed(ga))
     await msg.add_reaction(emoji)
-    db.add_message(msg.id, name)
+    if message: db.add_message(message, name)
+    else: db.add_message(msg.id, name)
 
 @bot.command(name=config['commands']['inspect_giveaway'], help='shows giveaway info')
 @commands.has_permissions(administrator=True)
