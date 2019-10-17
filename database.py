@@ -41,7 +41,7 @@ class Database:
         else: return False
 
     def active_giveaways(self):
-        return filter(lambda x: x['active'], self.all_giveaways())
+        return list(filter(lambda x: x['active'], self.all_giveaways()))
 
     def all_giveaways(self):
         return self.giveaways.all()
@@ -51,7 +51,7 @@ class Database:
         ga['active'] = False
         self.giveaways.update(ga, where('name') == name)
 
-    def create_invite(self, name, code, user):
+    def record_invite(self, name, code, user):
         ga = self.get_giveaway(name)
         for inv in ga['invites']:
             if inv['user'] == user: raise AlreadyJoined()

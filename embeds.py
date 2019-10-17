@@ -39,7 +39,3 @@ class GiveawayEmbed(discord.Embed):
 
         discord.Embed.__init__(self, color=self.color, title='Giveaway \'%s\' created' % ga['name'])
         self.set_footer(text='React to this message to join the giveaway')
-
-class GiveawayViewerEmbed(discord.Embed):
-    def __init__(self, ga):
-        pass

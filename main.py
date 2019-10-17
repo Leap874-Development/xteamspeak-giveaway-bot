@@ -64,7 +64,13 @@ async def inspect_giveaway(ctx, name : str):
 @bot.command(name=config['commands']['list_giveaways'], help='lists all open giveaways')
 @commands.has_permissions(administrator=True)
 async def list_giveaways(ctx):
-    raise NotImplemented()
+    gas = db.active_giveaways()
+    msg = 'Active giveaways:\n```'
+    longest = len(max(gas, key=lambda x: len(x['name']))['name'])
+    for g in gas:
+        padding = ' ' * (longest - len(g['name']))
+        msg += ' - %s %s(%s joined)\n' % (g['name'], padding, len(g['invites']))
+    await ctx.send(msg + '```')
 
 @bot.command(name=config['commands']['list_all_giveaways'], help='lists all giveaways (including closed)')
 @commands.has_permissions(administrator=True)
