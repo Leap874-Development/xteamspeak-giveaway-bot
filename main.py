@@ -93,7 +93,8 @@ async def close_giveaway(ctx, name : str):
 @bot.command(name=config['commands']['delete_giveaway'], help='permanently deletes a giveaway')
 @commands.has_permissions(administrator=True)
 async def delete_giveaway(ctx, name : str):
-    raise NotImplemented()
+    db.delete_giveaway(name)
+    await ctx.send(embed=embeds.SuccessEmbed('Giveaway deleted'))
 
 @bot.command(name=config['commands']['draw_user'], help='draws winner(s) from giveaway')
 @commands.has_permissions(administrator=True)

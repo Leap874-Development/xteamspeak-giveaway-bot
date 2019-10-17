@@ -29,6 +29,10 @@ class Database:
                 'invites': [] }
             self.giveaways.insert(ga)
             return ga
+    
+    def delete_giveaway(self, name):
+        ga = self.get_giveaway(name)
+        self.giveaways.remove(where('name') == name)
 
     def add_message(self, id, name):
         self.messages.insert({
