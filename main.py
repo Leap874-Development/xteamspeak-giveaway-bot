@@ -24,7 +24,9 @@ async def on_ready():
 
 async def on_command_error(ctx, err):
     if 'GiveawayExists' in str(err):
-        await ctx.send(embed=embeds.ErrorEmbed('A giveaway already exists under that name'))
+        await ctx.send(embed=embeds.ErrorEmbed('Giveaway already exists'))
+    elif 'GiveawayNotFound' in str(err):
+        await ctx.send(embed=embeds.ErrorEmbed('Giveaway not found'))
     else:
         await ctx.send(embed=embeds.CommandErrorEmbed(err, ctx))
 
@@ -38,7 +40,7 @@ async def on_raw_reaction_add(payload):
             data = config['messages']['joined'].replace('%INVITE%', str(inv)).replace('%GIVEAWAY%', msg['name'])
             db.record_invite(msg['name'], inv.code, payload.user_id)
             await usr.send(data)
-        except database.AlreadyJoined:
+        except (database.AlreadyJoined, database.GiveawayNotActive):
             pass
 
 @bot.command(name=config['commands']['stop_bot'], help='stops the bot')

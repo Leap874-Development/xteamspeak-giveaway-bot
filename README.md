@@ -80,10 +80,10 @@ Database schema (using tinydb)...
 - [x] Stop bot
 - [x] Create giveaway
 - [ ] Inspect giveaway
-- [ ] List active giveaways
-- [ ] List all giveaways
+- [x] List active giveaways
+- [x] List all giveaways
 - [x] Close giveaway
-- [ ] Delete giveaway
+- [x] Delete giveaway
 - [x] Join giveaway
 - [ ] Draw user
 

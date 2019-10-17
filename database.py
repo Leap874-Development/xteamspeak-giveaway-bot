@@ -57,6 +57,9 @@ class Database:
 
     def record_invite(self, name, code, user):
         ga = self.get_giveaway(name)
+        if not ga['active']:
+            raise GiveawayNotActive()
+
         for inv in ga['invites']:
             if inv['user'] == user: raise AlreadyJoined()
 
