@@ -36,7 +36,7 @@ async def on_raw_reaction_add(payload):
             usr = bot.get_user(payload.user_id)
             inv = await chan.create_invite(reason='unique giveaway invite link, do not delete!')
             data = config['messages']['joined'].replace('%INVITE%', str(inv)).replace('%GIVEAWAY%', msg['name'])
-            db.create_invite(msg['name'], inv.code, payload.user_id)
+            db.record_invite(msg['name'], inv.code, payload.user_id)
             await usr.send(data)
         except database.AlreadyJoined:
             pass
