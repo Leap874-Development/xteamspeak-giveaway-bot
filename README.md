@@ -94,7 +94,7 @@ To set up your system, you will need to do the following
 - Install Python3.7 from their [website](https://www.python.org/)
 - Install requirements by running `python -m pip install -r requirements.txt`
 
-You will also need to create an application, through the [Discord dev website](https://discordapp.com/developers/) then give it a bot. You will need the bot token in the `config.json` file for the bot to work!
+You will also need to create an application, through the [Discord dev website](https://discordapp.com/developers/) then give it a bot. You will need the bot token in the `secrets.json` file for the bot to work!
 
 See [this](https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token) step by step guide for help creating a bot, and obtaining a token.
 
