@@ -47,7 +47,8 @@ Database schema (using tinydb)...
             "invites": [
                 {
                     "code": "abcdefg",
-                    "user": 176415653069062146
+                    "user": 176415653069062146,
+                    "guild": 445308420980080651
                 },
                 ...
             ]
