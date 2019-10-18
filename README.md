@@ -73,8 +73,8 @@ Database schema (using tinydb)...
 - [x] Outline command overview
 - [x] Determine database schema
 - [x] Write database class
-- [ ] Implement all commands
-- [ ] Error handling
+- [x] Implement all commands
+- [x] Error handling
 - [ ] Testing and bug fixes
 
 ### Command implementation
@@ -86,7 +86,7 @@ Database schema (using tinydb)...
 - [x] Close giveaway
 - [x] Delete giveaway
 - [x] Join giveaway
-- [ ] Draw user
+- [x] Draw user
 
 ## Installation
 

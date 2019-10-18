@@ -5,6 +5,7 @@ import unicodedata
 import json
 import embeds
 import database
+import random
 
 with open('config.json', 'r') as f:
     config = json.load(f)
@@ -118,10 +119,27 @@ async def delete_giveaway(ctx, name : str):
 @bot.command(name=config['commands']['draw_user'], help='draws winner(s) from giveaway')
 @commands.has_permissions(administrator=True)
 async def draw_user(ctx, name : str, quantity : int=1):
-    raise NotImplemented()
+    ga = db.get_giveaway(name)
+    if len(ga['invites']) < quantity:
+        await ctx.send(embed=embeds.ErrorEmbed('Not enough members in the giveaway'))
+    else:
+        picks = []
+        for inv in ga['invites']:
+            guild = bot.get_guild(inv['guild'])
+            invites = await guild.invites()
+            obj = next(filter(lambda x: x.code == inv['code'], invites))
+            usr = bot.get_user(inv['user'])
+            for _ in range(obj.uses): picks.append(usr)
+        winners = []
+        while len(winners) != quantity:
+            choice = random.choice(picks)
+            if choice not in winners: winners.append(choice)
+        winners_str = ', '.join([ u.mention for u in winners ])
+        msg = config['messages']['win'].replace('%GIVEAWAY%', name)
+        await ctx.send(msg.replace('%USERS%', winners_str))
 
 bot.add_listener(on_ready)
 bot.add_listener(on_raw_reaction_add)
-# bot.add_listener(on_command_error)
+bot.add_listener(on_command_error)
 
 bot.run(secrets['token'])

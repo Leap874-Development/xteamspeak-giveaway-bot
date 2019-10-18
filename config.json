@@ -5,7 +5,8 @@
 	"invite_channel": 445308420980080653,
 
 	"messages": {
-		"joined": "You joined the '%GIVEAWAY%' giveaway! Share this invite link and gain entries every time somebody uses it.\n%INVITE%"
+		"joined": "You joined the '%GIVEAWAY%' giveaway! Share this invite link and gain entries every time somebody uses it.\n%INVITE%",
+		"win": "%USERS% won the '%GIVEAWAY%' giveaway!"
 	},
 
 	"embed_colors": {
