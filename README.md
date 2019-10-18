@@ -140,6 +140,8 @@ Values that are text (as opposed to a number) should be surrounded by double quo
  Configuration parameters are described below.
 
 - `prefix` bot command prefix
-- `bot_name` the name of your bot, can be anything
 - `embed_colors` side-color of the bot messages (in rgb)
 - `commands` command names, and the actual command itself-- use this if you want to rename a command
+- `messages` message text for certain bot responses
+- `react` [unicode](http://unicode.org/charts/charindex.html) character name of invite reaction
+- `invite_channel` channel ID of the channel that the bot creates an invite for
