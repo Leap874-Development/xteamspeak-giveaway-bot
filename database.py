@@ -55,7 +55,7 @@ class Database:
         ga['active'] = False
         self.giveaways.update(ga, where('name') == name)
 
-    def record_invite(self, name, code, user):
+    def record_invite(self, name, code, user, guild):
         ga = self.get_giveaway(name)
         if not ga['active']:
             raise GiveawayNotActive()
@@ -65,7 +65,8 @@ class Database:
 
         ga['invites'].append({
             'user': user,
-            'code': code
+            'code': code,
+            'guild': guild
         })
 
         self.giveaways.update(ga, where('name') == name)

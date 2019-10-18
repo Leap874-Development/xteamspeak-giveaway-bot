@@ -41,8 +41,18 @@ class GiveawayEmbed(discord.Embed):
         self.set_footer(text='React to this message to join the giveaway')
 
 class GiveawayInspectEmbed(discord.Embed):
-    def __init__(self, ga):
+    def __init__(self, ga, uses, users):
         self.color = discord.Color.from_rgb(*config['embed_colors']['info'])
+        self.giveaway = ga
+        self.uses = uses
+        self.users = users
+        self.desc = ''
 
-        discord.Embed.__init__(self, color=self.color, title='Giveaway \'%s\' created' % ga['name'])
-        self.set_footer(text='React to this message to join the giveaway')
+        for inv in self.giveaway['invites']:
+            uses = self.uses[inv['code']]
+            user = self.users[inv['user']]
+            self.desc += '%s - %s tickets\n' % (user.mention, uses)
+
+        discord.Embed.__init__(self,
+            color=self.color, title='Giveaway info for \'%s\' ' % ga['name'],
+            description=self.desc)

@@ -80,7 +80,7 @@ Database schema (using tinydb)...
 ### Command implementation
 - [x] Stop bot
 - [x] Create giveaway
-- [ ] Inspect giveaway
+- [x] Inspect giveaway
 - [x] List active giveaways
 - [x] List all giveaways
 - [x] Close giveaway
