@@ -38,7 +38,7 @@ async def on_raw_reaction_add(payload):
             usr = bot.get_user(payload.user_id)
             inv = await chan.create_invite(reason='unique giveaway invite link, do not delete!')
             data = config['messages']['joined'].replace('%INVITE%', str(inv)).replace('%GIVEAWAY%', msg['name'])
-            db.record_invite(msg['name'], inv.code, payload.user_id)
+            db.record_invite(msg['name'], inv.code, payload.user_id, payload.guild_id)
             await usr.send(data)
         except (database.AlreadyJoined, database.GiveawayNotActive):
             pass
@@ -56,36 +56,52 @@ async def create_giveaway(ctx, name : str, message : int = None):
     emoji = unicodedata.lookup(config['react'])
     msg = await ctx.send(embed=embeds.GiveawayEmbed(ga))
     await msg.add_reaction(emoji)
+
     if message: db.add_message(message, name)
     else: db.add_message(msg.id, name)
 
 @bot.command(name=config['commands']['inspect_giveaway'], help='shows giveaway info')
 @commands.has_permissions(administrator=True)
 async def inspect_giveaway(ctx, name : str):
-    raise NotImplemented()
+    ga = db.get_giveaway(name)
+    uses = {}
+    users = {}
+    for inv in ga['invites']:
+        guild = bot.get_guild(inv['guild'])
+        invites = await guild.invites()
+        obj = next(filter(lambda x: x.code == inv['code'], invites))
+        uses[inv['code']] = obj.uses
+        users[inv['user']] = bot.get_user(inv['user'])
+    await ctx.send(embed=embeds.GiveawayInspectEmbed(ga, uses, users))
 
 @bot.command(name=config['commands']['list_giveaways'], help='lists all open giveaways')
 @commands.has_permissions(administrator=True)
 async def list_giveaways(ctx):
     gas = db.active_giveaways()
-    msg = 'Active giveaways:\n```'
-    longest = len(max(gas, key=lambda x: len(x['name']))['name'])
-    for g in gas:
-        padding = ' ' * (longest - len(g['name']))
-        msg += ' - %s %s(%s joined)\n' % (g['name'], padding, len(g['invites']))
-    await ctx.send(msg + '```')
+    if len(gas) == 0:
+        await ctx.send('No active giveaways')
+    else:
+        msg = 'Active giveaways:\n```'
+        longest = len(max(gas, key=lambda x: len(x['name']))['name'])
+        for g in gas:
+            padding = ' ' * (longest - len(g['name']))
+            msg += ' - %s %s(%s joined)\n' % (g['name'], padding, len(g['invites']))
+        await ctx.send(msg + '```')
 
 @bot.command(name=config['commands']['list_all_giveaways'], help='lists all giveaways (including closed)')
 @commands.has_permissions(administrator=True)
 async def list_all_giveaways(ctx):
     gas = db.all_giveaways()
-    msg = 'All giveaways:\n```'
-    longest = len(max(gas, key=lambda x: len(x['name']))['name'])
-    for g in gas:
-        padding = ' ' * (longest - len(g['name']))
-        active = 'ACTIVE' if g['active'] else ''
-        msg += ' - %s %s(%s joined)\t%s\n' % (g['name'], padding, len(g['invites']), active)
-    await ctx.send(msg + '```')
+    if len(gas) == 0:
+        await ctx.send('No giveaways created')
+    else:
+        msg = 'All giveaways:\n```'
+        longest = len(max(gas, key=lambda x: len(x['name']))['name'])
+        for g in gas:
+            padding = ' ' * (longest - len(g['name']))
+            active = 'ACTIVE' if g['active'] else ''
+            msg += ' - %s %s(%s joined)\t%s\n' % (g['name'], padding, len(g['invites']), active)
+        await ctx.send(msg + '```')
 
 @bot.command(name=config['commands']['close_giveaway'], help='closes a giveaway')
 @commands.has_permissions(administrator=True)
@@ -106,6 +122,6 @@ async def draw_user(ctx, name : str, quantity : int=1):
 
 bot.add_listener(on_ready)
 bot.add_listener(on_raw_reaction_add)
-bot.add_listener(on_command_error)
+# bot.add_listener(on_command_error)
 
 bot.run(secrets['token'])
