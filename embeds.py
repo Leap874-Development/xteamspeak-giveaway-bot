@@ -48,10 +48,19 @@ class GiveawayInspectEmbed(discord.Embed):
         self.users = users
         self.desc = ''
 
+        all_data = []
         for inv in self.giveaway['invites']:
             uses = self.uses[inv['code']]
             user = self.users[inv['user']]
-            if (user): self.desc += '%s - %s tickets\n' % (user.mention, uses)
+            if user:
+                all_data.append({
+                    'user': self.users[inv['user']],
+                    'uses': self.uses[inv['code']]
+                })
+        all_data.sort(key=lambda x: x['uses'])
+
+        for user in all_data[::-1][:config['max_length']]:
+            self.desc += '%s - %s tickets\n' % (user['user'].mention, user['uses'])
 
         discord.Embed.__init__(self,
             color=self.color, title='Giveaway info for \'%s\' ' % ga['name'],
