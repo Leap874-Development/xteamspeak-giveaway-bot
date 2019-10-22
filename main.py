@@ -61,8 +61,8 @@ async def create_giveaway(ctx, name : str, message : int = None):
     if message: db.add_message(message, name)
     else: db.add_message(msg.id, name)
 
-@bot.command(name=config['commands']['inspect_giveaway'], help='shows giveaway info')
 # @commands.has_permissions(administrator=True)
+@bot.command(name=config['commands']['inspect_giveaway'], help='shows giveaway info')
 async def inspect_giveaway(ctx, name : str):
     ga = db.get_giveaway(name)
     uses = {}
