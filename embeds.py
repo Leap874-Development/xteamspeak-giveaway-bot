@@ -51,7 +51,7 @@ class GiveawayInspectEmbed(discord.Embed):
         for inv in self.giveaway['invites']:
             uses = self.uses[inv['code']]
             user = self.users[inv['user']]
-            self.desc += '%s - %s tickets\n' % (user.mention, uses)
+            if (user): self.desc += '%s - %s tickets\n' % (user.mention, uses)
 
         discord.Embed.__init__(self,
             color=self.color, title='Giveaway info for \'%s\' ' % ga['name'],
